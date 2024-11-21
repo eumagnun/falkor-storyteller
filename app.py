@@ -46,7 +46,7 @@ if user_message := st.chat_input("Digite aqui..."):
             st.write(llm_response.text)
 
         st.session_state.messages.append({"role": "user", "parts": user_message})        
-        st.session_state.messages.append({"role": "model", "parts": llm_response.text})
+        st.session_state.messages.append({"role": "assistant", "parts": llm_response.text})
         
        # print(st.session_state.messages)
        # print("====================================")

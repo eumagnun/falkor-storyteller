@@ -4,4 +4,4 @@ google-cloud-firestore
 google-generativeai
 st_pages
 python-dotenv
-openai
+ipywidgets
