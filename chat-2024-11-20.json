@@ -1,0 +1,18 @@
+[
+    {
+        "role": "user",
+        "parts": "oi"
+    },
+    {
+        "role": "model",
+        "parts": "Ol\u00e1! Como posso te ajudar?\n"
+    },
+    {
+        "role": "user",
+        "parts": "meu nome \u00e9 daniel e tenho 39"
+    },
+    {
+        "role": "model",
+        "parts": "Ol\u00e1 Daniel! Prazer em conhec\u00ea-lo. Como posso te ajudar hoje, considerando que voc\u00ea tem 39 anos?\n"
+    }
+]
