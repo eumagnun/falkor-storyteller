@@ -1,8 +1,4 @@
-# Templates de chat com memoria
-
-## usando lib openai
-## usando memoria gerenciada pelo gemini (chat session)
-## usando memoria gerenciada pelo app via array
+# falkor-storyteller
 Passos para execução local ou no Cloud Shell:
 
  - Clonar esse repo
