@@ -31,10 +31,10 @@ Caso queira gerar uma imagem para implantação no Cloud Run:
 
  - Gerar imagem:
 ````
-docker build -t us-central1-docker.pkg.dev/{SEU-PROJECT-ID}/demos/demo_assist_contratos .
+docker build -t us-central1-docker.pkg.dev/{SEU-PROJECT-ID}/demos/falkor .
 ````
  - Enviar imagem para o Registry:
 ````
-docker push us-central1-docker.pkg.dev/{SEU-PROJECT-ID}/demos/demo_assist_contratos
+docker push us-central1-docker.pkg.dev/{SEU-PROJECT-ID}/demos/falkor
 ````
 
