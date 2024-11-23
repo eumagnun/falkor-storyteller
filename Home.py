@@ -1,31 +1,32 @@
 ﻿import google.generativeai as genai
 import streamlit as st
-from app_config import LLM_API_KEY,LLM_MODEL
+from Home_config import LLM_API_KEY,LLM_MODEL
 from services.service_memory import retrieve_memories
+from services.service_file import load_world
 from prompts import basic_template
-import json
+
 
 st.set_page_config(page_title="Falkor",)
 st.title("Falkor - O contador de histórias")
 
-def load_world(filename):
-    with open(filename, 'r') as f:
-        return json.load(f)
 
 def call_assistant(user_message, start=False):
     client = st.session_state["client"]
 
     memories = retrieve_memories(st.session_state.messages)
-    prompt = f"Responda a solicitacao do usuario considerando o historico mas sem ser repetitivo. solicitacao={user_message},historico={memories}, world_info={st.session_state["world_info"]}"
+    prompt = f"""Responda a solicitacao do usuario considerando o o seguinte contexto: 
+                 solicitacao={user_message},
+                 historico={memories}, 
+                 world_info={st.session_state["world_info"]}
+                 """
     llm_response=client.generate_content(prompt)
 
     st.write(llm_response.text)
+
     if not start:
         st.session_state.messages.append({"role": "user", "parts": user_message})  
         st.session_state.messages.append({"role": "falkor", "parts": llm_response.text})    
       
-
-
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
@@ -40,13 +41,16 @@ if "client" not in st.session_state:
     "response_mime_type": "text/plain",
     }
 
-
-    world = load_world('mundos_criados/2024-11-23T095943Z_mundo_criado.json')
-    world_info = f"""
-    kingdoms = {world['kingdoms'][0]}
-    town ={world['kingdoms'][0]['towns'][0]}
-    character = {world['kingdoms'][0]['towns'][0]['npcs'][0]}
     
+    world = load_world('mundos_criados/2024-11-23T095943Z_mundo_criado.json')
+    kingdom = world['kingdoms'][0]
+    town = kingdom['towns'][0]
+    character = town['npcs'][0]
+    
+    world_info = f"""
+        kingdom = {kingdom}
+        town ={town}
+        character = {character}
     """
     st.session_state["world_info"]=world_info
 
@@ -60,7 +64,6 @@ if "client" not in st.session_state:
     st.session_state["client"] = llm_model
 
     call_assistant("descreva de forma detalhada o reino, cidades, personagem e ultimas ocorrências",start=True)
-
 
 
 for message in st.session_state.messages:
@@ -77,5 +80,3 @@ if user_message := st.chat_input("Digite START para começar..."):
         with st.chat_message("falkor",avatar="falkor.png"):
             call_assistant(user_message)
         
-       # print(st.session_state.messages)
-       # print("====================================")
