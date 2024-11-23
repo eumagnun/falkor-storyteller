@@ -2,10 +2,6 @@
 import json
 import os 
 
-def load_world(filename):
-    with open(filename, 'r') as f:
-        return json.load(f)
-    
 
 def load_world_file():
     # Obtém o caminho absoluto da pasta atual (pasta A)
@@ -21,3 +17,5 @@ def load_world_file():
     with open(caminho_arquivo, 'r',encoding='utf8') as arquivo:
         dados_json = json.load(arquivo)
         return dados_json
+    
+    

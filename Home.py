@@ -1,8 +1,7 @@
 ﻿import google.generativeai as genai
 import streamlit as st
 from Home_config import LLM_API_KEY,LLM_MODEL
-from services.service_memory import retrieve_memories
-from services.service_file import load_world
+from services.service_memory import retrieve_memories,setup_world_options
 from prompts import basic_template
 
 
@@ -21,7 +20,7 @@ def call_assistant(user_message, start=False):
                  """
     llm_response=client.generate_content(prompt)
 
-    st.write(llm_response.text)
+    st.info(llm_response.text)
 
     if not start:
         st.session_state.messages.append({"role": "user", "parts": user_message})  
@@ -29,6 +28,8 @@ def call_assistant(user_message, start=False):
       
 if "messages" not in st.session_state:
     st.session_state.messages = []
+
+
 
 if "client" not in st.session_state:
     genai.configure(api_key=LLM_API_KEY)
@@ -41,18 +42,7 @@ if "client" not in st.session_state:
     "response_mime_type": "text/plain",
     }
 
-    
-    world = load_world('mundos_criados/2024-11-23T095943Z_mundo_criado.json')
-    kingdom = world['kingdoms'][0]
-    town = kingdom['towns'][0]
-    character = town['npcs'][0]
-    
-    world_info = f"""
-        kingdom = {kingdom}
-        town ={town}
-        character = {character}
-    """
-    st.session_state["world_info"]=world_info
+    setup_world_options()
 
     persona = basic_template.get()
 
