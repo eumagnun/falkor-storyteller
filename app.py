@@ -22,7 +22,7 @@ def call_assistant(user_message, start=False):
     st.write(llm_response.text)
     if not start:
         st.session_state.messages.append({"role": "user", "parts": user_message})  
-        st.session_state.messages.append({"role": "assistant", "parts": llm_response.text})    
+        st.session_state.messages.append({"role": "falkor", "parts": llm_response.text})    
       
 
 
@@ -64,17 +64,17 @@ if "client" not in st.session_state:
 
 
 for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
+    with st.chat_message(message["role"],avatar=f"{message['role']}.png"):
         st.markdown(message["parts"])
 
 
 if user_message := st.chat_input("Digite START para começar..."):
    
-    with st.chat_message("user"):
+    with st.chat_message("user",avatar="user.png"):
         st.markdown(user_message)
 
     with st.spinner('Wait for it...'):
-        with st.chat_message("assistant"):
+        with st.chat_message("falkor",avatar="falkor.png"):
             call_assistant(user_message)
         
        # print(st.session_state.messages)
