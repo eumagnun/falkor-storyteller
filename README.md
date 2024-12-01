@@ -1,5 +1,6 @@
 # Falkor Storyteller
 Esse app se trata de uma versão inicial de um livro dinâmico onde o leitor vai interagindo e definindo o rumo da história
+Exemplo de interação: https://github.com/eumagnun/falkor-storyteller/blob/main/docs/Falkor%20-%20Visao%20Inicial.pdf
 
 ## Como rodar o projeto localmente
  - Clonar esse repo
