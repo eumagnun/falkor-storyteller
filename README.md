@@ -1,6 +1,7 @@
-# falkor-storyteller
-Passos para execução local ou no Cloud Shell:
+# Falkor Storyteller
+Esse app se trata de uma versão inicial de um livro dinâmico onde o leitor vai interagindo e definindo o rumo da história
 
+## Como rodar o projeto localmente
  - Clonar esse repo
 ````
 git clone xxxxxxxXX
@@ -13,7 +14,7 @@ python -m venv venv_falkor
 ```
 #Linux
 source venv_falkor/bin/activate
-#ou
+
 #Windows
 .\venv_falkor\Scripts\activate
 ```
@@ -25,10 +26,12 @@ pip  install --force-reinstall -r requirements.txt
 ```
  - Executar app:
 ```
+#Linux
 sh run.sh
+#Windows
+streamlit run .\Home.py
 ```
-Caso queira gerar uma imagem para implantação no Cloud Run:
-
+## Como gerar uma imagem docker e implantar o serviço no Cloud Run
  - Gerar imagem:
 ````
 docker build -t us-central1-docker.pkg.dev/{SEU-PROJECT-ID}/demos/falkor .
@@ -37,4 +40,5 @@ docker build -t us-central1-docker.pkg.dev/{SEU-PROJECT-ID}/demos/falkor .
 ````
 docker push us-central1-docker.pkg.dev/{SEU-PROJECT-ID}/demos/falkor
 ````
+ - Depois disso basta siga essas instruções para executar o deploy https://cloud.google.com/run/docs/deploying
 
