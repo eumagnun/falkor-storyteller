@@ -29,11 +29,13 @@ def __read_daily_history():
               print("Log chat diario náo encontrado. Criando novo...")
               __create_daily_history([])  
 
-def setup_world_options():
-    world = load_world_file()
-    kingdom = world['kingdoms'][0]
-    town = kingdom['towns'][0]
-    character = town['npcs'][0]
+def setup_world_options(kingdom=None,town=None,character=None):
+    
+    if kingdom is None or town is None or character is None:
+       world = load_world_file()
+       kingdom = world['kingdoms'][0]
+       town = kingdom['towns'][0]
+       character = town['npcs'][0]
     
     world_info = f"""
         kingdom = {kingdom}

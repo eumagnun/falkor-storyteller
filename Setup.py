@@ -34,4 +34,5 @@ npc_selecionada = st.selectbox(
 st.info(npc_selecionada['description'])
 
 if st.button("Reiniciar estória com opções atuais?"):
+    st.session_state.clear()
     setup_world_options(reino_selecionado,cidade_selecionada,npc_selecionada)

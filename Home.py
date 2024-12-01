@@ -26,12 +26,10 @@ def call_assistant(user_message, start=False):
         st.session_state.messages.append({"role": "user", "parts": user_message})  
         st.session_state.messages.append({"role": "falkor", "parts": llm_response.text})    
       
-if "messages" not in st.session_state:
+if "client" not in st.session_state:
+
     st.session_state.messages = []
 
-
-
-if "client" not in st.session_state:
     genai.configure(api_key=LLM_API_KEY)
 
     generation_config = {
